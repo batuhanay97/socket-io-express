@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_DATABASE=socket_io
+    ports:
+      - 3307:3306
+    expose:
+      - '3307'
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - my-network
+  redis:
+    image: redis:6.2-alpine
+    ports:
+      - 6379:6379
+    networks:
+      - my-network
+  app:
+    depends_on:
+      - mysqldb
+      - redis
+    build: ./
+    restart: unless-stopped
+    ports:
+      - 2525:2525
+    environment:
+      - DATABASE_HOST=mysqldb
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=12345678
+      - DATABASE_PORT=3306
+      - DATABASE_DB=socket_io
+      - DATABASE_DIALECT=mysql
+      - API_URL=http://localhost:2525
+      - PORT=2525
+      - NODE_ENV=production
+      - REDIS_HOST=redis
+      - JWT_SECRET=secret
+    networks:
+      - my-network
+    expose:
+      - '2525'
+    stdin_open: true
+    tty: true
+
+volumes: 
+ db:
+networks:
+  my-network:
+    driver: bridge

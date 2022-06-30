@@ -1,0 +1,35 @@
+{
+	"test": {
+		"API_URL": "http://localhost:2525",
+		"DATABASE_DB": "socket_io_test",
+		"DATABASE_DIALECT": "mysql",
+		"DATABASE_HOST": "localhost",
+		"DATABASE_PASSWORD": "12345678",
+		"DATABASE_USER": "root",
+		"PORT": 2525,
+		"JWT_SECRET": "secret"
+	},
+	"development": {
+		"API_URL": "http://localhost:2525",
+		"DATABASE_DB": "socket_io",
+		"DATABASE_DIALECT": "mysql",
+		"DATABASE_HOST": "localhost",
+		"DATABASE_PASSWORD": "12345678",
+		"DATABASE_USER": "root",
+		"DATABASE_PORT": 3306,
+		"PORT": 2525,
+		"JWT_SECRET": "secret"
+	},
+	"production": {
+		"API_URL": "http://localhost:2525",
+		"DATABASE_DB": "socket_io",
+		"DATABASE_DIALECT": "mysql",
+		"DATABASE_HOST": "mysqldb",
+		"DATABASE_PASSWORD": "12345678",
+		"DATABASE_USER": "root",
+		"DATABASE_PORT": 3307,
+		"PORT": 2525,
+		"JWT_SECRET": "secret",
+		"REDIS_HOST": "redis"
+	}
+}
